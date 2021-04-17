@@ -9,9 +9,19 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('Pong!');
-  }
+    const pesan = msg.content;
+    var kata = pesan.split(' ')
+    if (msg.channel.id == ev['ID_Text_Channel_MOD'] && kata[0] == 'kirim'){
+        var kata_kirim = ''
+        for (var i = 1; i < kata.length ; i++){
+            kata_kirim = kata_kirim + kata[i] + ' '
+        }
+        try {
+            const channel_percobaan = client.guilds.cache.get(ev['ID_Guild']).channels.cache.get(ev['ID_Text_Channel'])
+            channel_percobaan.send(kata_kirim)
+        } catch (err){
+        }
+    }
 });
 
 const job_close = schedule.scheduleJob({
