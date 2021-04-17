@@ -14,18 +14,28 @@ client.on('message', msg => {
   }
 });
 
-const job = schedule.scheduleJob('1 * * * * *', () => {
+const job_close = schedule.scheduleJob({
+    dayOfWeek: 1,
+    hour: 0,
+    minute: 0,
+    second: 1
+}, () => {
     const channel_percobaan = client.guilds.cache.get(ev['ID_Guild']).channels.cache.get(ev['ID_Text_Channel'])
     channel_percobaan.overwritePermissions([{
         id: ev['ID_Role'],
         deny: ['VIEW_CHANNEL']
     }]).then(() => {
-        channel_percobaan.send(' Weekend Market Ditutup!')
+        channel_percobaan.send('Weekend Market Ditutup!')
         console.log('Weekend Market ditutup sekarang!')
     })
 });
 
-const job2 = schedule.scheduleJob('31 * * * * *', () => {
+const job_open = schedule.scheduleJob({
+    dayOfWeek: 6,
+    hour: 0,
+    minute: 0,
+    second: 1
+}, () => {
     const channel_percobaan = client.guilds.cache.get(ev['ID_Guild']).channels.cache.get(ev['ID_Text_Channel'])
     channel_percobaan.overwritePermissions([{
         id: ev['ID_Role'],
