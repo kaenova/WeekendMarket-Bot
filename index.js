@@ -54,7 +54,7 @@ const job_close = schedule.scheduleJob({
 
 const job_open = schedule.scheduleJob({
     dayOfWeek: 6,
-    hour: 0,
+    hour: 6,
     minute: 0,
     second: 1
 }, () => {
