@@ -1,8 +1,20 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const ev = require('dotenv').config().parsed
-const schedule = require('node-schedule');
 
+//Passing env for docker, if its run on docker, use the process environment
+if (process.env.TOKEN == undefined) {
+    var ev = require('dotenv').config().parsed
+} else {
+    var ev = {
+        TOKEN: process.env.TOKEN,
+        ID_Guild: process.env.ID_Guild,
+        ID_Text_Channel: process.env.ID_Text_Channel,
+        ID_Role: process.env.ID_Role,
+        ID_Text_Channel_MOD: process.env.ID_Text_Channel_MOD
+    }
+}
+
+const schedule = require('node-schedule');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
